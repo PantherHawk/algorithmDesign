@@ -1,27 +1,30 @@
-const isBalanced = (str) => {
-  const currentOpen = [];
-  const pairs = {
-    "(": ")",
-    "{": "}",
-    "[": "]"
-  }
+//O: bool
+//I: str
+//C: stack
+//E: Iterate through the string. Character is either an open, a close, or not a bracket. Make an object of open-closed pairs. If open bracket, push to top of stack. If closed bracket, pop topmost item from stack
 
-  for(let i = 0; i < str.length; i++) {
+const isBalanced = (str) => {
+  const brackets = {
+    "(": ")",
+    "[": "]",
+    "{": "]"};
+  const currentOpen = [];
+
+  for (let i = 0; i < str.length; i++) {
     let char = str[i];
-    if(pairs[char]) {
-      currentOpen.push(char);
+    if (brackets[char]) {
+      currentOpen.push(brackets[char])
     } else if (
-      char === pairs['['] ||
-      char === pairs['{'] ||
-      char === pairs['(']
+      char === brackets["("] ||
+      char === brackets["["] ||
+      char === brackets["{"]
     ) {
-      let toBeClosed = currentOpen.pop();
-      if(char !== pairs[toBeClosed]) {
+      let expectedClose = currentOpen.pop();
+      if (char !== brackets[expectedClose]) {
         return false;
       }
     }
-  }
-  if(currentOpen.length > 0) {return false;
+    if (currentOpen.length > 0) { return false; }
   }
   return true;
 };

@@ -26,7 +26,7 @@ describe('Balanced Brackets', function() {
     var result = isBalanced("[[[{{{((()))}}}]]]");
     result.should.equal(true);
   });
-  it('Should return true for "(50)("', function() {
+  it('Should return false for "(50)("', function() {
     var result = isBalanced("(50)(");
     result.should.equal(false);
   });
